@@ -1,0 +1,23 @@
+@import url("./board.css");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&display=swap');
+
+:root {
+    --white: #FFFFFF;
+    --black: #031028;
+    --dark-green: #49adaa;
+    --light-green: #9bfaf6;
+    --brown: #4972d7;
+    --test: #779ad2;
+}
+
+body {
+    color: var(--light-green);
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--black);
+}
+
+h1, h2 {
+    font-weight: 300;
+}
+
+h1 {font-size: 38px;}
