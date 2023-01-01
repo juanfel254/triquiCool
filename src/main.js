@@ -5,11 +5,18 @@ const cells = document.getElementsByTagName("td")
 const movesRecord = []
 const gameOver = false
 
-function identifyCellClicked(event){
+function checkClick(event){
     cellId = event.target.id.toString()
-    //movesRecord.push(cellId)
     cellImgQuery = `tr.row td#${cellId} img`
-    insertFigure()
+    if (document.querySelector(cellImgQuery).src == document.URL) {
+        insertFigure(cellImgQuery)
+    }
+
+    if(movesRecord.length == 9) {
+        setTimeout(() => {
+            reloadSite()
+        }, 1000)
+    }
 }
 
 function insertFigure() {
@@ -21,15 +28,17 @@ function insertFigure() {
         figure = exFigure
     }
     movesRecord.push([cellId, figure])
-    console.log(movesRecord)
+    console.log(movesRecord.length)
     document.querySelector(cellImgQuery).src = figure
 }
 
+function reloadSite() {
+        let newGame = confirm("GAME OVER\n ¿Do you wish to play again?")
+        if(newGame){
+            setTimeout("location.reload(true);", 100)
+        }
+}
+
 for (let cell of cells){
-    if (gameOver != true) {
-        cell.addEventListener("click", identifyCellClicked)
-    }
-    else {
-        alert("GAME OVER")
-    }
+    cell.addEventListener("click", checkClick)
 }
