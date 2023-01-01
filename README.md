@@ -6,5 +6,5 @@ My first challenge: make my own version from scratch using HTML, CSS and JS of t
 
 ![photo1672386536](https://user-images.githubusercontent.com/85968522/210047608-58e71f5f-183d-45b2-bfd4-e84879d3a21e.jpeg)
 
-Here I have the first 0 lines. 
-Last updated: 30/12/2022.
+Here I have the first 15 lines. 
+Last updated: 31/12/2022.
