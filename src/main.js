@@ -15,7 +15,7 @@ function checkClick(event){
     if(movesRecord.length == 9) {
         setTimeout(() => {
             reloadSite()
-        }, 1000)
+        }, 500)
     }
 }
 
