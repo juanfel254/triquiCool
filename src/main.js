@@ -47,9 +47,9 @@ function checkClick(event){
     if(movesRecord.length == 9) {
         checkGame(circleRecord);
         checkGame(exRecord);
-        /*setTimeout(() => {
+        setTimeout(() => {
             reloadSite()
-        }, 500)*/
+        }, 500)
     }
 }
 
@@ -82,7 +82,10 @@ function checkGame(figure){
                     if (winnerMove[j] == winnerMove[winnerMove.length-1]){
                         setTimeout(()=>{
                             alert("GANASTE");
-                        }, 500);
+                            setTimeout(() => {
+                                reloadSite()
+                            }, 100)
+                        }, 200);
                     }
                     console.log(figure[i], winnerMove)
                     i++; 
