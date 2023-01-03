@@ -7,7 +7,7 @@
     --dark-green: #49adaa;
     --light-green: #9bfaf6;
     --brown: #4972d7;
-    --test: #779ad2;
+    --light-blue: #779ad2;
 }
 
 body {
@@ -21,3 +21,12 @@ h1, h2 {
 }
 
 h1 {font-size: 38px;}
+
+footer, a {
+    color: var(--white);
+    font-weight: 300;
+}
+
+a {
+    color: var(--light-green);
+}

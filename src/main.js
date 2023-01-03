@@ -1,14 +1,4 @@
-// 1. Get all cells from the board
-const cells = document.getElementsByTagName("td")
-
-const movesRecord = []
-const circleRecord = []
-const exRecord = []
-const gameOver = false
-
-const circleFigure = "/media/pictures/circle.png"
-const exFigure = "/media/pictures/x.png"
-
+const picturesUrl = "/media/pictures/";
 const winnerMoves = [
     [1,2,3],
     [4,5,6],
@@ -18,7 +8,7 @@ const winnerMoves = [
     [1,4,7],
     [2,5,8],
     [3,6,9]
-]
+];
 
 const textNum = {
     'num1': 1,
@@ -30,84 +20,69 @@ const textNum = {
     'num7': 7,
     'num8': 8,
     'num9': 9,
+};
+
+const gameRecord = {
+    "circle": [],
+    "ex": [],
 }
+
+
+// 1. Get all cells from the board
+const cells = document.getElementsByTagName("td");
 
 // 3. After clicking any cell, check cell and board status
 function checkClick(event){
-    cellId = event.target.id
-    cellImgQuery = `tr.row td#${cellId} img`
-    // 3.1 Check if cell has a figure marked already or not
-    if (document.querySelector(cellImgQuery).src == document.URL) {
-        insertFigure(cellImgQuery)
-        checkGame(circleRecord);
-        checkGame(exRecord);
+    let totalMoves = gameRecord['circle'].length + gameRecord['ex'].length;
+    let cellId = event.target.id;
+    let queryCellClicked = `tr.row td#${cellId} img`;
+    let cellImgTag = document.querySelector(queryCellClicked);
+    if (cellImgTag.src == document.URL) {
+        insertImg(cellId, cellImgTag, totalMoves)
     }
+    gameOver()
+};
 
-    // 3.2 If the board is full, end the game
-    if(movesRecord.length == 9) {
-        checkGame(circleRecord);
-        checkGame(exRecord);
-        setTimeout(() => {
-            reloadSite()
-        }, 500)
-    }
-}
-
-//3.1.1 Insert figure if cell clicked is empty
-function insertFigure() {
-    let figure = "";
-    if (movesRecord.length%2 == 0){
-        figure = circleFigure;
-        circleRecord.push(textNum[cellId]);
-        circleRecord.sort();
+// 4. Insert image of the figure when a move is allowed
+function insertImg(cellId, cellImgTag, totalMoves) {
+    let figure = '';
+    if (totalMoves%2 == 0){
+        figure = 'circle'
     }
     else {
-        figure = exFigure;
-        exRecord.push(textNum[cellId]);
-        exRecord.sort();
+        figure = 'ex';
     }
-    // 3.1.2 Save record of the move
-    movesRecord.push([cellId, figure])
-    console.log(movesRecord.length)
-    document.querySelector(cellImgQuery).src = figure
+    cellImgTag.src = picturesUrl + figure + ".png";
+    gameRecord[`${figure}`].push(textNum[cellId]);
 }
 
-function checkGame(figure){
-    console.log("Checking...")
-    let i = 0;
-    while (i < figure.length){
+// 5. After each move, check if the game has a winner
+function gameOver(){
+    
+    for (let [key, value] of Object.entries(gameRecord)){
         for (let winnerMove of winnerMoves){
-            for (let j = 0; j<winnerMove.length; j++){
-                if (figure[i] == winnerMove[j]){ 
-                    if (winnerMove[j] == winnerMove[winnerMove.length-1]){
-                        setTimeout(()=>{
-                            alert("GANASTE");
-                            setTimeout(() => {
-                                reloadSite()
-                            }, 100)
-                        }, 200);
-                    }
-                    console.log(figure[i], winnerMove)
-                    i++; 
-                }
-                else {
-                    i = 0;
-                    break
-                }
+            let checkWin = (value, winnerMove) => winnerMove.every(move => value.includes(move));
+            if (checkWin(value, winnerMove)){
+                endGame(key)
             }
         }
-        break
     }
 }
 
-function reloadSite() {
-        let newGame = confirm("GAME OVER\n ¿Do you wish to play again?")
-        if(newGame){
-            setTimeout("location.reload(true);", 100)
+function endGame(key){
+    setTimeout(() => {
+        let newGame = confirm(`${key} is the winner`.toUpperCase() + "\nPress Ok to start a new game.");
+        if (newGame){
+            document.location.reload(true); 
         }
+    }, 100);
+    for (let cell of cells){
+        cell.style.pointerEvents = "none";
+    }
+
 }
 
 // 2. event listener type click added on all cells gotten on step 1
 for (let cell of cells){
-    cell.addEventListener("click", checkClick)
-}
+    cell.addEventListener("click", checkClick);
+};
