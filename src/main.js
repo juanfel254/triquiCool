@@ -23,26 +23,28 @@ const textNum = {
 };
 
 const gameRecord = {
-    "circleMoves": [],
-    "exMoves": [],
+    "circle": [],
+    "ex": [],
 }
+
 
 // 1. Get all cells from the board
 const cells = document.getElementsByTagName("td");
 
 // 3. After clicking any cell, check cell and board status
 function checkClick(event){
-    let gameOver = checkBoard()
+    let totalMoves = gameRecord['circle'].length + gameRecord['ex'].length;
     let cellId = event.target.id;
     let queryCellClicked = `tr.row td#${cellId} img`;
     let cellImgTag = document.querySelector(queryCellClicked);
-    if (cellImgTag.src == document.URL && gameOver == false) {
-        insertImg(cellId, cellImgTag)
+    if (cellImgTag.src == document.URL) {
+        insertImg(cellId, cellImgTag, totalMoves)
     }
+    gameOver()
 };
 
-function insertImg(cellId, cellImgTag) {
-    let totalMoves = gameRecord['circleMoves'].length + gameRecord['exMoves'].length;
+// 4. Insert image of the figure when a move is allowed
+function insertImg(cellId, cellImgTag, totalMoves) {
     let figure = '';
     if (totalMoves%2 == 0){
         figure = 'circle'
@@ -51,12 +53,33 @@ function insertImg(cellId, cellImgTag) {
         figure = 'ex';
     }
     cellImgTag.src = picturesUrl + figure + ".png";
-    gameRecord[`${figure}Moves`].push(textNum[cellId]);
-    console.log(gameRecord);
+    gameRecord[`${figure}`].push(textNum[cellId]);
 }
 
-function checkBoard(){
-    return false
+// 5. After each move, check if the game has a winner
+function gameOver(){
+    
+    for (let [key, value] of Object.entries(gameRecord)){
+        for (let winnerMove of winnerMoves){
+            let checkWin = (value, winnerMove) => winnerMove.every(move => value.includes(move));
+            if (checkWin(value, winnerMove)){
+                endGame(key)
+            }
+        }
+    }
+}
+
+function endGame(key){
+    setTimeout(() => {
+        let newGame = confirm(`${key} is the winner`.toUpperCase() + "\nPress Ok to start a new game.");
+        if (newGame){
+            document.location.reload(true); 
+        }
+    }, 100);
+    for (let cell of cells){
+        cell.style.pointerEvents = "none";
+    }
+
 }
 
 // 2. event listener type click added on all cells gotten on step 1
