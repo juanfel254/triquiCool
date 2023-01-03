@@ -40,8 +40,7 @@ const cells = document.getElementsByTagName("td");
 function checkClick(event){
     let totalMoves = gameRecord['circle'].length + gameRecord['ex'].length;
     let cellId = event.target.id;
-    let queryCellClicked = `tr.row td#${cellId} img`;
-    let cellImgTag = document.querySelector(queryCellClicked);
+    let cellImgTag = document.querySelector(`tr.row td#${cellId} img`);
     if (cellImgTag.src == document.URL) {
         insertImg(cellId, cellImgTag, totalMoves)
     }
@@ -66,25 +65,36 @@ function gameOver(){
             let checkWin = (value, winnerMove) => winnerMove.every(move => value.includes(move));
             if (checkWin(value, winnerMove)){
                 moves = 0;
-                endGame(key)
+                endGame(key, winnerMove)
             }
         }
     }
     if (moves == 9){
-        endGame('no one')
+        endGame('no one', [])
     }
 }
 
-function endGame(key){
+function endGame(key, winnerMove){
     winner = key.charAt(0).toUpperCase() + key.slice(1);
     setTimeout(() => {
-        endGameSign.innerHTML = `${winner} wins`
+        endGameSign.innerHTML = `${winner} wins`;
+        endGameSign.style.fontWeight = '500';
         playerSign.innerHTML = '';
         newGameLink.href = document.URL;
-        newGameLink.innerHTML = 'New Game'
+        newGameLink.innerHTML = 'New Game';
+        newGameLink.style.fontWeight = '400';
+
     }, 100);
     for (let cell of cells){
         cell.style.pointerEvents = "none";
+        if(winnerMove.includes(textNum[cell.id]) == false){
+            cell.style.opacity = 0.25;
+        }
+        else{
+            let cellImg = document.querySelector(`tr.row td#${cell.id} img`);
+            cellImg.style.filter = "brightness(1.7)";
+        }
+
     }
 }
 
