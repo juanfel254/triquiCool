@@ -25,6 +25,7 @@ h1 {font-size: 38px;}
 footer, a {
     color: var(--white);
     font-weight: 300;
+    text-align: center;
 }
 
 a {
