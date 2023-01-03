@@ -6,7 +6,7 @@ My first challenge: make my own version from scratch using HTML, CSS and JS of t
 
 Check it out here: [https://triquicool.netlify.app/](https://triquicool.netlify.app/)
 
-![photo1672539478](https://user-images.githubusercontent.com/85968522/210159308-06d6ea7f-790d-4be4-8a01-aed9f2a86161.jpeg)
+![triquiCool pics](https://user-images.githubusercontent.com/85968522/210459632-14c1a963-4a50-4292-8907-5f3e45e9fac2.png)
 
 Here I have the first 104 lines. 
 Last updated: 03/01/2023.
