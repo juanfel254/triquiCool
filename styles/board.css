@@ -16,7 +16,7 @@ table {
 header, td {text-align: center;}
 
 table, td {
-    border: 3px solid var(--test);
+    border: 3px solid var(--light-blue);
     border-collapse: collapse;
 }
 
