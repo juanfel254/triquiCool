@@ -8,5 +8,5 @@ Check it out here: [https://triquicool.netlify.app/](https://triquicool.netlify.
 
 ![photo1672539478](https://user-images.githubusercontent.com/85968522/210159308-06d6ea7f-790d-4be4-8a01-aed9f2a86161.jpeg)
 
-Here I have the first 99 lines. 
+Here I have the first 104 lines. 
 Last updated: 03/01/2023.
