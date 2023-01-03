@@ -30,6 +30,7 @@ const gameRecord = {
 let moves = 0;
 const endGameSign = document.getElementById("announcement-title");
 const playerSign = document.getElementById("player-name");
+playerSign.innerHTML = 'Circle goes first';
 
 // 1. Get all cells from the board
 const cells = document.getElementsByTagName("td");
@@ -57,7 +58,10 @@ function insertImg(cellId, cellImgTag, totalMoves) {
     }
     cellImgTag.src = picturesUrl + figure + ".png";
     gameRecord[`${figure}`].push(textNum[cellId]);
-    figureName = figure.charAt(0).toUpperCase() + figure.slice(1);
+
+    let figureTurn = figure == 'circle' ? 'ex' : 'circle'
+
+    figureName = figureTurn.charAt(0).toUpperCase() + figureTurn.slice(1);
     playerSign.innerHTML = `${figureName}'s turn`
     moves++;
 }
