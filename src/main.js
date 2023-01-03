@@ -27,6 +27,9 @@ const gameRecord = {
     "ex": [],
 }
 
+let moves = 0;
+const endGameSign = document.getElementById("announcement-title");
+const playerSign = document.getElementById("player-name");
 
 // 1. Get all cells from the board
 const cells = document.getElementsByTagName("td");
@@ -54,32 +57,36 @@ function insertImg(cellId, cellImgTag, totalMoves) {
     }
     cellImgTag.src = picturesUrl + figure + ".png";
     gameRecord[`${figure}`].push(textNum[cellId]);
+    figureName = figure.charAt(0).toUpperCase() + figure.slice(1);
+    playerSign.innerHTML = `${figureName}'s turn`
+    moves++;
 }
 
 // 5. After each move, check if the game has a winner
 function gameOver(){
-    
     for (let [key, value] of Object.entries(gameRecord)){
         for (let winnerMove of winnerMoves){
             let checkWin = (value, winnerMove) => winnerMove.every(move => value.includes(move));
             if (checkWin(value, winnerMove)){
+                moves = 0;
                 endGame(key)
             }
         }
     }
+    if (moves == 9){
+        endGame('no one')
+    }
 }
 
 function endGame(key){
+    winner = key.charAt(0).toUpperCase() + key.slice(1);
     setTimeout(() => {
-        let newGame = confirm(`${key} is the winner`.toUpperCase() + "\nPress Ok to start a new game.");
-        if (newGame){
-            document.location.reload(true); 
-        }
+        endGameSign.innerHTML = `${winner} wins`
+        playerSign.innerHTML = 'Reload the page for New Game';
     }, 100);
     for (let cell of cells){
         cell.style.pointerEvents = "none";
     }
-
 }
 
 // 2. event listener type click added on all cells gotten on step 1
