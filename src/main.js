@@ -58,7 +58,7 @@ function insertImg(cellId, cellImgTag, totalMoves) {
     cellImgTag.src = picturesUrl + figure + ".png";
     gameRecord[`${figure}`].push(textNum[cellId]);
     figureName = figure.charAt(0).toUpperCase() + figure.slice(1);
-    playerSign.innerHTML = `${figureName}'s turn;`
+    playerSign.innerHTML = `${figureName}'s turn`
     moves++;
 }
 
