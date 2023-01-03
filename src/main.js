@@ -30,6 +30,7 @@ const gameRecord = {
 let moves = 0;
 const endGameSign = document.getElementById("announcement-title");
 const playerSign = document.getElementById("player-name");
+const newGameLink = document.getElementById("new-game");
 playerSign.innerHTML = 'Circle goes first';
 
 // 1. Get all cells from the board
@@ -49,18 +50,10 @@ function checkClick(event){
 
 // 4. Insert image of the figure when a move is allowed
 function insertImg(cellId, cellImgTag, totalMoves) {
-    let figure = '';
-    if (totalMoves%2 == 0){
-        figure = 'circle'
-    }
-    else {
-        figure = 'ex';
-    }
+    let figure = totalMoves%2 ? 'ex' : 'circle';
     cellImgTag.src = picturesUrl + figure + ".png";
     gameRecord[`${figure}`].push(textNum[cellId]);
-
     let figureTurn = figure == 'circle' ? 'ex' : 'circle'
-
     figureName = figureTurn.charAt(0).toUpperCase() + figureTurn.slice(1);
     playerSign.innerHTML = `${figureName}'s turn`
     moves++;
@@ -86,7 +79,9 @@ function endGame(key){
     winner = key.charAt(0).toUpperCase() + key.slice(1);
     setTimeout(() => {
         endGameSign.innerHTML = `${winner} wins`
-        playerSign.innerHTML = 'Reload the page for New Game';
+        playerSign.innerHTML = '';
+        newGameLink.href = document.URL;
+        newGameLink.innerHTML = 'New Game'
     }, 100);
     for (let cell of cells){
         cell.style.pointerEvents = "none";
