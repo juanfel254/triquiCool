@@ -1,5 +1,35 @@
 .boardContainer {
-  margin: 0;
-  padding: 0;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+.table {
+  size: 290px;
+}
+
+.table, .cell {
+  border: 3px solid var(--light-blue);
+  border-collapse: collapse;
+}
+
+.row, .cell { 
+  padding: 0; 
+  margin: 0;
+}
+
+.cell {
+  text-align: center;
+  font-size: 14vh;
+  width: 23vh;
+  height: 23vh;
+}
+
+/*Top and bottom borders*/
+.table .row:nth-child(1) .cell {border-top-color:  var(--black);}
+.table .row:nth-child(3) .cell {border-bottom-color:  var(--black);}
+
+/*Left and right borders*/
+.table .row .cell:nth-child(1) {border-left-color: var(--black);}
+.table .row .cell:nth-child(3) {border-right-color: var(--black);}
