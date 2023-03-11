@@ -5,6 +5,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 50px;
+  backdrop-filter: blur(4px);
+  background-color: rgba(5, 29, 73, 0.3);
+}
+
+.header h1 {transition: 0.05s;}
+
+.header h1:hover {
+  font-weight: 500;
+  text-decoration: underline;
+  transition: 0.05s; 
 }
 
 .header ul {
@@ -14,3 +24,12 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.header ul li {transition: 0.3s;}
+
+.header ul li:hover {
+  font-weight: bold;
+  font-size: 105%;
+  transition: 0.3s;
+}
+

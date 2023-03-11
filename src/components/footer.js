@@ -1,7 +1,7 @@
 export default function Footer () {
   return (
     <footer>
-      <p>Made With Love by <a href='https://github.com/juanfel254'>Juan F. Parra</a></p>
+      <p>Made by <a href='https://github.com/juanfel254'>Juan F. Parra</a> - 2023</p>
     </footer>
   )
 }

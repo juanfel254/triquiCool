@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import Head from 'next/head'
-import Board from '../components/game-board/board'
-import styles from '@/styles/Home.module.css'
+import Board from '@/components/game-board/board'
+//import styles from '@/styles/Home.module.css'
 
 export default function Home() {
+
+  let [moves, setMoves] = useState(["O","O","O","O","O","O","O","O","O",]);
+
   return (
     <>
       <Head>
@@ -11,8 +15,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h2>Circle goes first</h2>
-      <Board />
+      <h2>You (circle) go first</h2>
+      <Board 
+        moves = {moves}
+        setMoves = {setMoves}
+        />
     </>
   )
 }

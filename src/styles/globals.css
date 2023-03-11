@@ -2,10 +2,10 @@
 
 :root {
   --white: #FFFFFF;
-  --black: #031028;
+  --black: rgb(3, 16, 40);
   --dark-green: #49adaa;
   --light-green: #9bfaf6;
-  --brown: #4972d7;
+  --blue: #4972d7;
   --light-blue: #779ad2;
 }
 
@@ -15,6 +15,11 @@ body {
   background-color: var(--black);
   margin: 0;
   padding: 0;
+}
+
+header {
+  position: sticky;
+  top: 0;
 }
 
 main {
