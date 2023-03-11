@@ -1,18 +1,8 @@
 import Head from 'next/head'
-import Board from './board/board'
-import { Inter } from 'next/font/google'
+import Board from '../components/game-board/board'
 import styles from '@/styles/Home.module.css'
-import { useState } from 'react'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-
-  const circle = "/images/circle.png";
-  const ex = "/images/ex.png";
-
-  const [cells, setCells] = useState([ex, ex, ex]);
-
   return (
     <>
       <Head>
@@ -21,16 +11,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <h1>TriquiCool</h1>
-        <h2>Circle goes first</h2>
-      </header>
-      <main className={styles.main}>
-        <Board cellsStates = {cells}/>
-      </main>
-      <footer>
-
-      </footer>
+      <h2>Circle goes first</h2>
+      <Board />
     </>
   )
 }

@@ -1,0 +1,16 @@
+.header {
+  height: 90px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+.header ul {
+  display: flex;
+  list-style-type: none;
+  width: 250px;
+  align-items: center;
+  justify-content: space-between;
+}

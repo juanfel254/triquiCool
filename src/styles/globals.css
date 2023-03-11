@@ -13,6 +13,8 @@ body {
   color: var(--light-green);
   font-family: 'Quicksand', sans-serif;
   background-color: var(--black);
+  margin: 0;
+  padding: 0;
 }
 
 main {
