@@ -5,7 +5,10 @@ import Board from '@/components/game-board/board'
 
 export default function Home() {
 
-  let [moves, setMoves] = useState(["O","O","O","O","O","O","O","O","O",]);
+  let [moves, setMoves] = useState(
+    ["","","",
+    "","","",
+    "","","",]);
 
   return (
     <>
@@ -15,7 +18,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h2>You (circle) go first</h2>
+      <h2>
+        <a 
+        className='new-game-title' 
+        onClick={() => setMoves(["","","","","","","","","",])}
+        >Clean Board</a>
+      </h2>
       <Board 
         moves = {moves}
         setMoves = {setMoves}

@@ -40,4 +40,9 @@ footer, a {
 
 a {
   color: var(--light-green);
+  cursor: pointer;
+}
+
+h2 a.new-game-title:hover, a:hover {
+  font-weight: bold;
 }
