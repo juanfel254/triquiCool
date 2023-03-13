@@ -9,6 +9,11 @@
   --light-blue: #779ad2;
 }
 
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   color: var(--light-green);
   font-family: 'Quicksand', sans-serif;
@@ -43,6 +48,6 @@ a {
   cursor: pointer;
 }
 
-h2 a.new-game-title:hover, a:hover {
+h2 a:hover, a:hover {
   font-weight: bold;
 }

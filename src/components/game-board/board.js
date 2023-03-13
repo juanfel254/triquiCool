@@ -2,29 +2,49 @@ import styles from "@/styles/board.module.css";
 
 export default function Board({ moves, setMoves }) {
 
-  const updateBoard = (row, column, moves, setMoves) => {
-    return (() => {
-      setMoves(moves.map((move, index) => index === row*3+column-3 ? "X" : move))
-      })
-  }
+  let record = [];
 
+  const handleClick = (setMoves, moves, row, column, record) => () => {
+    setMoves(moves.map((move, index) => {
+      if (index === row*3+column-3) {
+        record.push(index); 
+        console.log(index, record);
+        return "X";
+      } return move;
+      }));
+  };
+  
+  const fillRow = (row, moves, record) => {
+    return (moves.slice(-3 + row*3,row*3).map((move, column) => 
+      <li 
+        className={styles.cell} 
+        onClick={handleClick(setMoves, moves, row, column, record)}
+        key={column+row}>{move} 
+      </li>
+    ))
+  }
+  
   return (
     <div className={styles.boardContainer}>
-      <table className={styles.table}>
-        <tbody>
-          {[1,2,3].map(row => 
-            <tr className={styles.row} key={row}>
-              {moves.slice(-3 + row*3,row*3).map((move, column) => 
-                <td 
-                  className={styles.cell} 
-                  onClick={updateBoard(row, column, moves, setMoves)}
-                  key={column}>{move}
-                </td>
-                )}
-            </tr>
-          )}
-        </tbody>
-      </table>
+
+      <ul className={styles.table}>
+        <li className={styles.row_container}>
+          <ul className={styles.row}>
+            {fillRow(1, moves, record)}
+          </ul>
+        </li>
+        <li className={styles.row_container}>
+          <ul className={styles.row}>
+            {fillRow(2, moves, record)}
+          </ul>
+        </li>
+        <li className={styles.row_container}>
+          <ul className={styles.row}>
+            {fillRow(3, moves, record)}
+          </ul>
+        </li>
+      </ul>
+      
     </div>
   )
 }
