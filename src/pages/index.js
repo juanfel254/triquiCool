@@ -17,7 +17,7 @@ export default function Home() {
         <a 
         className='new-game-title' 
         onClick={() => setMoves(Array(9).fill(""))}
-        >Clean Board</a>
+        >New Board</a>
       </h2>
       <Board 
         moves = {moves}
